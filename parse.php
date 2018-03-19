@@ -93,6 +93,10 @@
 
     // sort the associative array according to the timestamps
 	asort( $only_adRequested_sessions_timestamps );
+	$adRequestTimestampsFile = fopen("ad_timestamps.txt", "w");
+	foreach ( $only_adRequested_sessions_timestamps as $key => $element ) fwrite($adRequestTimestampsFile, $element . "\n");
+	fclose($adRequestTimestampsFile);
+
 	// print_r( array_keys($only_adRequested_sessions_timestamps, max($only_adRequested_sessions_timestamps)) );
 
 	$only_adRequested_length = count( $only_adRequested_sessions_timestamps );
@@ -768,6 +772,8 @@
 	echo "Ad requests events: " . count($only_adRequested_sessions_timestamps) . "\n";
 	echo "Engagement rate: " . array_sum($engagementEvents)/count($only_adRequested_sessions_timestamps)*100 . "\n";
 	echo "Total user error percentage of adRequested: " . ($only_errors_length/$only_adRequested_length*100) . "\n";
+	echo "Total error detected: " . $only_errors_length . "\n";
+	echo "Errors in sessions with engagement events: " . $error_counter . "\n";
 	echo "User error rate per interactive session: " . ($error_counter/count($engagementEvents)) . "\n";
 	echo "Average number of interactions: " . array_sum($interaction_timestamps_indexes)/count($interaction_timestamps_indexes) . "\n";
 	echo "Average delay: " . $average_delay . "\n";

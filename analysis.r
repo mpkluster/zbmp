@@ -311,6 +311,9 @@ analyse_er <- function( past_data_file = "past_data.csv", new_data_file = "new_d
 	axis(1, at=1:length(tabela[,'Time']), labels=tabela[,'Time'], cex.axis=1 )
 
 
+	
+
+
 	## Optional Machine Learning analysis of the attributes (simple feature 
 	## selection with the caret package)
 

@@ -1,5 +1,6 @@
 
 library(lubridate)
+library(graphics)
 
 # read the main data 
 data <- as.data.frame(read.table("frequencies_fast.txt", sep="\t", header=TRUE))
@@ -41,6 +42,45 @@ write.csv( new, file="new_data.csv", row.names=FALSE )
 
 
 
+# histogram
+timestamps <- as.matrix( read.table("ad_timestamps.txt", sep="\n", header=FALSE) )
+
+sampling <- 1000
+times_name <- matrix(0, floor(length(timestamps[,1])/sampling), 1)
+times      <- as.matrix(timestamps[seq(1,length(timestamps[,1]), by=sampling ),1])
+
+j <- 1;
+for ( i in seq(1,length(timestamps[,1]), by=sampling ) ) {
+  timeinsec <- timestamps[i]
+  td <- seconds_to_period(timeinsec)
+  times_name[j] <-  sprintf('%02d:%02d', td@hour, minute(td) ) #paste(td$hour,":",td$minute,sep="")
+  j<-j+1
+}
+
+sampling <- 30000
+times_name1 <- matrix(0, floor(length(timestamps[,1])/sampling), 1)
+times1      <- as.matrix(timestamps[seq(1,length(timestamps[,1]), by=sampling ),1])
+j <- 1;
+for ( i in seq(1,length(timestamps[,1]), by=sampling ) ) {
+  timeinsec <- timestamps[i]
+  td <- seconds_to_period(timeinsec)
+  times_name1[j] <-  sprintf('%02d:%02d', td@hour, minute(td) ) #paste(td$hour,":",td$minute,sep="")
+  j<-j+1
+}
+
+times_name <- cbind( as.matrix(times_name) )
+times <- (times-min(times))/(max(times)-min(times))
+
+times_name1 <- cbind( as.matrix(times_name1) )
+times1 <- (times1-min(times1))/(max(times1)-min(times1))
+
+# default_par <- par(no.readonly=TRUE)
+
+barplot( times, beside=TRUE, yaxt="n", ylab="", xlab="",  )
+axis(side=2, at=times1, labels=times_name1, las=1 )
+title(xlab="Index (x1000)", mgp=c(1,1,0))
+
+# par(default_par)
 
 
 
