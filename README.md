@@ -16,7 +16,7 @@ Init the repo
 
 1. git clone https://github.com/mpkluster/zbmp.git
 
-2. cd data-insights
+2. cd zbmp
 
 3. Get somehow the data "bdsEventsSample.gz" and put it here
 
