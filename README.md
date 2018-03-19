@@ -1,9 +1,10 @@
 # zbmp
 
 Files of this repo
-:---- analysis.r    (main code for data analysis)
-:---- preparedata.r (data preparation for the R env)
-:---- parser.php    (main json parser)
+
+	analysis.r    (main code for data analysis)
+	preparedata.r (data preparation for the R env)
+	parser.php    (main json parser)
 
 
 To run the data-insights test follow these general instructions:
