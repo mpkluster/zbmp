@@ -2,7 +2,7 @@
 # run
 # source('analysis.r'); analyse_er()
 
-# Powered by ibmp (aka zamejski bosanc mattia petroni)
+# Powered by zbmp (aka zamejski bosanc mattia petroni)
 
 # change point functions requirements
 library(bcp)
